@@ -1,5 +1,7 @@
-// Creates the first admin account. Run with:  npm run seed:admin
-// Reads ADMIN_NAME, ADMIN_EMAIL and ADMIN_PASSWORD from server/.env. Safe to run more than once.
+// Creates two admin accounts. Run with: npm run seed:admin
+// Reads ADMIN_NAME, ADMIN_EMAIL, ADMIN_PASSWORD
+// and ADMIN2_NAME, ADMIN2_EMAIL, ADMIN2_PASSWORD from server/.env.
+
 import mongoose from 'mongoose';
 import { env } from '../config/env.js';
 import { connectDB } from '../config/db.js';
@@ -7,41 +9,72 @@ import User from '../models/User.js';
 import { hashPassword } from '../services/authService.js';
 import { registerSchema } from '../validators/authValidators.js';
 
-const { name, email, password } = env.admin;
+const adminAccounts = [
+  {
+    name: env.admin.name,
+    email: env.admin.email,
+    password: env.admin.password,
+  },
+  {
+    name: env.admin2.name,
+    email: env.admin2.email,
+    password: env.admin2.password,
+  },
+];
 
-if (!email || !password) {
-  console.error('Set ADMIN_EMAIL and ADMIN_PASSWORD in server/.env, then run this again.');
-  process.exit(1);
-}
+async function createAdmin({ name, email, password }) {
+  if (!email || !password) {
+    console.error(`Missing credentials for admin: ${name || 'Unknown'}`);
+    return;
+  }
 
-// Reuse the same rules as public registration (valid email, strong enough password)
-const parsed = registerSchema.safeParse({ name, email, password });
-if (!parsed.success) {
-  console.error('Admin details are not valid:');
-  parsed.error.issues.forEach((issue) => console.error(` - ${issue.path.join('.')}: ${issue.message}`));
-  process.exit(1);
-}
+  const parsed = registerSchema.safeParse({ name, email, password });
 
-await connectDB();
-await User.init(); // make sure the unique email index exists
+  if (!parsed.success) {
+    console.error(`Invalid details for admin ${email}:`);
+    parsed.error.issues.forEach((issue) =>
+      console.error(` - ${issue.path.join('.')}: ${issue.message}`)
+    );
+    return;
+  }
 
-const admin = parsed.data;
-const existing = await User.findOne({ email: admin.email });
+  const admin = parsed.data;
+  const existing = await User.findOne({ email: admin.email });
 
-if (existing?.role === 'admin') {
-  console.log(`Admin already exists: ${admin.email} (nothing changed)`);
-} else if (existing) {
-  existing.role = 'admin';
-  await existing.save();
-  console.log(`Existing account ${admin.email} was promoted to admin (its password was not changed)`);
-} else {
+  if (existing?.role === 'admin') {
+    console.log(`Admin already exists: ${admin.email} (nothing changed)`);
+    return;
+  }
+
+  if (existing) {
+    existing.role = 'admin';
+    await existing.save();
+    console.log(`Existing account ${admin.email} was promoted to admin.`);
+    return;
+  }
+
   await User.create({
     name: admin.name,
     email: admin.email,
     passwordHash: await hashPassword(admin.password),
     role: 'admin',
   });
+
   console.log(`Admin created: ${admin.email}`);
 }
 
-await mongoose.disconnect();
+try {
+  await connectDB();
+  await User.init();
+
+  for (const account of adminAccounts) {
+    await createAdmin(account);
+  }
+
+  console.log('Admin seeding process completed.');
+} catch (error) {
+  console.error('Admin seeding failed:', error.message);
+  process.exitCode = 1;
+} finally {
+  await mongoose.disconnect();
+}
