@@ -57,7 +57,7 @@ npm install
 npm run dev
 ```
 
-The app is at http://localhost:5173 and the API at http://localhost:5000/api/v1.
+The app is at https://dental-care-project.vercel.app and the API at https://dental-care-project.onrender.com/api/v1.
 
 ## How to test the setup
 
