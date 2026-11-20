@@ -8,8 +8,8 @@ export const COOKIE_NAME = 'token';
 // Note: if you ever host the frontend and API on different domains, this needs sameSite 'none' + secure.
 const baseCookieOptions = {
   httpOnly: true,
-  secure: env.nodeEnv === 'production',
-  sameSite: 'lax',
+  secure:true,
+  sameSite: 'none',
 };
 
 export function signToken(userId) {
