@@ -241,17 +241,6 @@ export default function AdminProductForm() {
           help='For example "Printed on the pack" or the manufacturer website address. Shown to customers.'
         />
 
-        <div className="flex flex-wrap gap-6 pt-2">
-          <label className="flex items-center gap-2 text-sm text-slate-700">
-            <input type="checkbox" name="inStock" checked={form.inStock} onChange={handleChange} className="h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500" />
-            In stock
-          </label>
-          <label className="flex items-center gap-2 text-sm text-slate-700">
-            <input type="checkbox" name="isActive" checked={form.isActive} onChange={handleChange} className="h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500" />
-            Visible on the website
-          </label>
-        </div>
-
         <div className="flex gap-2 pt-2">
           <button type="submit" disabled={saving} className="rounded-md bg-teal-600 px-6 py-2 font-medium text-white hover:bg-teal-700 disabled:opacity-60">
             {saving ? 'Saving...' : isEdit ? 'Save changes' : 'Create product'}
