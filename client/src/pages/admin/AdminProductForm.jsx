@@ -210,7 +210,7 @@ export default function AdminProductForm() {
           value={form.price}
           onChange={handleChange}
           error={errors.price}
-          help="The price you will charge for the product"
+        
           className="sm:max-w-xs"
         />
 
@@ -221,7 +221,7 @@ export default function AdminProductForm() {
           value={form.usageInstructions}
           onChange={handleChange}
           error={errors.usageInstructions}
-          help="Copy from the label or the manufacturer's instructions"
+         
         />
         <TextAreaField
           label="Precautions"
@@ -229,7 +229,7 @@ export default function AdminProductForm() {
           value={form.precautionsText}
           onChange={handleChange}
           error={errorFor(errors, 'precautions')}
-          help="One precaution per line, from the label or manufacturer. Up to 20."
+          
         />
         <TextAreaField label="Ingredients" name="ingredients" rows={3} value={form.ingredients} onChange={handleChange} error={errors.ingredients} />
         <FormField
@@ -238,7 +238,7 @@ export default function AdminProductForm() {
           value={form.sourceNote}
           onChange={handleChange}
           error={errors.sourceNote}
-          help='For example "Printed on the pack" or the manufacturer website address. Shown to customers.'
+          
         />
 
         <div className="flex gap-2 pt-2">
