@@ -20,8 +20,8 @@ const emptyForm = {
   price: '',
   description: '',
   usageInstructions: '',
-  precautionsText: '' // one precaution per line; turned into a list when saving
-
+  precautionsText: '', // one precaution per line; turned into a list when saving
+  isActive: true,
 };
 
 const formFromProduct = (p) => ({
@@ -31,8 +31,8 @@ const formFromProduct = (p) => ({
   price: String(p.price),
   description: p.description || '',
   usageInstructions: p.usageInstructions || '',
-  precautionsText: (p.precautions || []).join('\n')
-  
+  precautionsText: (p.precautions || []).join('\n'),
+  isActive: p.isActive ?? true,
 });
 
 // Server errors for list items look like "precautions.2": show them under the precautions box
@@ -100,7 +100,8 @@ export default function AdminProductForm() {
       price: form.price === '' ? undefined : Number(form.price),
       description: form.description,
       usageInstructions: form.usageInstructions,
-      precautions: form.precautionsText.split('\n').map((p) => p.trim()).filter(Boolean)
+      precautions: form.precautionsText.split('\n').map((p) => p.trim()).filter(Boolean),
+      isActive: form.isActive,
     };
 
     try {
@@ -200,7 +201,7 @@ export default function AdminProductForm() {
           value={form.price}
           onChange={handleChange}
           error={errors.price}
-        
+
           className="sm:max-w-xs"
         />
 
@@ -211,7 +212,7 @@ export default function AdminProductForm() {
           value={form.usageInstructions}
           onChange={handleChange}
           error={errors.usageInstructions}
-         
+
         />
         <TextAreaField
           label="Precautions"
@@ -219,10 +220,18 @@ export default function AdminProductForm() {
           value={form.precautionsText}
           onChange={handleChange}
           error={errorFor(errors, 'precautions')}
-          
-        />
 
-        
+        />
+        <label className="flex items-center gap-2 pt-2 text-sm text-slate-700">
+          <input
+            type="checkbox"
+            name="isActive"
+            checked={form.isActive}
+            onChange={handleChange}
+            className="h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500"
+          />
+          Visible on the website
+        </label>
 
         <div className="flex gap-2 pt-2">
           <button type="submit" disabled={saving} className="rounded-md bg-teal-600 px-6 py-2 font-medium text-white hover:bg-teal-700 disabled:opacity-60">
