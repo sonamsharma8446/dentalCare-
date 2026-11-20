@@ -54,7 +54,8 @@ export const createProductSchema = z.object({
   brand: optionalText('Brand', 80),
   description: optionalText('Description', 3000),
   usageInstructions: optionalText('Usage instructions', 3000),
-  precautions: precautions.optional()
+  precautions: precautions.optional(),
+  isActive: z.boolean().optional()
 });
 
 // For updates every field is optional, but at least one must be sent
