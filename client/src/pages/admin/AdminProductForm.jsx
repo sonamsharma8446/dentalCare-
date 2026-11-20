@@ -20,11 +20,8 @@ const emptyForm = {
   price: '',
   description: '',
   usageInstructions: '',
-  precautionsText: '', // one precaution per line; turned into a list when saving
-  ingredients: '',
-  sourceNote: '',
-  inStock: true,
-  isActive: true,
+  precautionsText: '' // one precaution per line; turned into a list when saving
+
 };
 
 const formFromProduct = (p) => ({
@@ -34,11 +31,8 @@ const formFromProduct = (p) => ({
   price: String(p.price),
   description: p.description || '',
   usageInstructions: p.usageInstructions || '',
-  precautionsText: (p.precautions || []).join('\n'),
-  ingredients: p.ingredients || '',
-  sourceNote: p.sourceNote || '',
-  inStock: p.inStock,
-  isActive: p.isActive,
+  precautionsText: (p.precautions || []).join('\n')
+  
 });
 
 // Server errors for list items look like "precautions.2": show them under the precautions box
@@ -105,12 +99,7 @@ export default function AdminProductForm() {
       category: form.category,
       price: form.price === '' ? undefined : Number(form.price),
       description: form.description,
-      usageInstructions: form.usageInstructions,
-      precautions: form.precautionsText.split('\n').map((line) => line.trim()).filter(Boolean),
-      ingredients: form.ingredients,
-      sourceNote: form.sourceNote,
-      inStock: form.inStock,
-      isActive: form.isActive,
+      usageInstructions: form.usageInstructions
     };
 
     try {
@@ -231,15 +220,8 @@ export default function AdminProductForm() {
           error={errorFor(errors, 'precautions')}
           
         />
-        <TextAreaField label="Ingredients" name="ingredients" rows={3} value={form.ingredients} onChange={handleChange} error={errors.ingredients} />
-        <FormField
-          label="Where did this information come from?"
-          name="sourceNote"
-          value={form.sourceNote}
-          onChange={handleChange}
-          error={errors.sourceNote}
-          
-        />
+
+        
 
         <div className="flex gap-2 pt-2">
           <button type="submit" disabled={saving} className="rounded-md bg-teal-600 px-6 py-2 font-medium text-white hover:bg-teal-700 disabled:opacity-60">

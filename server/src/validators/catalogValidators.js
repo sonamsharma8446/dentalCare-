@@ -54,11 +54,7 @@ export const createProductSchema = z.object({
   brand: optionalText('Brand', 80),
   description: optionalText('Description', 3000),
   usageInstructions: optionalText('Usage instructions', 3000),
-  precautions: precautions.optional(),
-  ingredients: optionalText('Ingredients', 2000),
-  sourceNote: optionalText('Source note', 500),
-  inStock: z.boolean({ error: 'inStock must be true or false' }).optional(),
-  isActive: z.boolean({ error: 'isActive must be true or false' }).optional(),
+  precautions: precautions.optional()
 });
 
 // For updates every field is optional, but at least one must be sent

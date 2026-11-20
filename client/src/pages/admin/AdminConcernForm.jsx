@@ -189,19 +189,8 @@ export default function AdminConcernForm() {
           onChange={handleChange}
           error={errors.whenToSeeDentist}
         />
-        <FormField
-          label="Where did this information come from?"
-          name="sourceNote"
-          value={form.sourceNote}
-          onChange={handleChange}
-          error={errors.sourceNote}
-          help="For example a dental association page or a dentist's name. Shown to visitors."
-        />
+        
 
-        <label className="flex items-center gap-2 pt-2 text-sm text-slate-700">
-          <input type="checkbox" name="isActive" checked={form.isActive} onChange={handleChange} className="h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500" />
-          Visible on the website
-        </label>
 
         <div className="pt-2">
           <button type="submit" disabled={saving} className="rounded-md bg-teal-600 px-6 py-2 font-medium text-white hover:bg-teal-700 disabled:opacity-60">

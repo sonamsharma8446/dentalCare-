@@ -9,7 +9,7 @@ export const MAX_IMAGES_PER_PRODUCT = 8;
 const escapeRegex = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 // Lists show a summary only. The detail page loads the full product.
-export const LIST_FIELDS = '-usageInstructions -precautions -ingredients -sourceNote -concerns';
+export const LIST_FIELDS = '-usageInstructions -precautions ';
 
 const SORTS = {
   newest: { createdAt: -1, _id: -1 },

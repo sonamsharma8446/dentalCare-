@@ -23,7 +23,7 @@ const productSchema = new mongoose.Schema(
     description: { type: String, trim: true, maxlength: 3000, default: '' },
     usageInstructions: { type: String, trim: true, maxlength: 3000, default: '' },
     precautions: { type: [String], default: [] },
-    ingredients: { type: String, trim: true, maxlength: 2000, default: '' },
+  
     // Where the admin got the information (e.g. "Printed on the pack" or the manufacturer's page)
     sourceNote: { type: String, trim: true, maxlength: 500, default: '' },
     images: { type: [imageSchema], default: [] },
