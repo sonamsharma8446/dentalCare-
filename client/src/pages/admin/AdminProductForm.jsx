@@ -99,7 +99,8 @@ export default function AdminProductForm() {
       category: form.category,
       price: form.price === '' ? undefined : Number(form.price),
       description: form.description,
-      usageInstructions: form.usageInstructions
+      usageInstructions: form.usageInstructions,
+      precautions: form.precautionsText.split('\n').map((p) => p.trim()).filter(Boolean)
     };
 
     try {
