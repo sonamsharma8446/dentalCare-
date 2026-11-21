@@ -157,10 +157,7 @@ export default function AdminConcernForm() {
       <Alert type={message.type}>{message.text}</Alert>
 
       <form onSubmit={handleSubmit} noValidate className="space-y-4 rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-        <p className="rounded-md bg-slate-50 p-3 text-sm text-slate-600">
-          Write only what comes from a reliable source, such as a dental association page or a dentist's advice. Do not
-          guess or add claims you cannot support. Note your source at the bottom.
-        </p>
+        
 
         <FormField label="Concern name *" name="name" value={form.name} onChange={handleChange} error={errors.name} />
         <TextAreaField

@@ -158,10 +158,7 @@ export default function AdminShopForm() {
       <Alert type={message.type}>{message.text}</Alert>
 
       <form onSubmit={handleSubmit} noValidate className="space-y-4 rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-        <p className="rounded-md bg-slate-50 p-3 text-sm text-slate-600">
-          Only add shops whose details you have checked yourself. Wrong phone numbers or addresses send visitors to the
-          wrong place.
-        </p>
+    
 
         <FormField label="Shop name *" name="name" value={form.name} onChange={handleChange} error={errors.name} />
         <FormField label="Address *" name="address" value={form.address} onChange={handleChange} error={errors.address} help="Street, area or landmark" />

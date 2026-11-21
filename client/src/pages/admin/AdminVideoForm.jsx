@@ -145,10 +145,7 @@ export default function AdminVideoForm() {
       )}
 
       <form onSubmit={handleSubmit} noValidate className="space-y-4 rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-        <p className="rounded-md bg-slate-50 p-3 text-sm text-slate-600">
-          Only add videos you have checked yourself and that come from a source you trust. The video stays on YouTube;
-          this site only shows it. Write the description in your own words or from the video's own description.
-        </p>
+       
 
         <FormField label="Title *" name="title" value={form.title} onChange={handleChange} error={errors.title} />
         <FormField

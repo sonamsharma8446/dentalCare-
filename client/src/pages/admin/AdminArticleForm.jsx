@@ -129,11 +129,7 @@ export default function AdminArticleForm() {
       <Alert type={message.type}>{message.text}</Alert>
 
       <form onSubmit={handleSubmit} noValidate className="space-y-4 rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-        <p className="rounded-md bg-slate-50 p-3 text-sm text-slate-600">
-          Write only what comes from a reliable source, such as a dental association page or a dentist's advice. Do not
-          guess or add claims you cannot support. Copying text you do not have permission to use is not allowed. Note
-          your source at the bottom.
-        </p>
+      
 
         <FormField label="Title *" name="title" value={form.title} onChange={handleChange} error={errors.title} />
         <SelectField label="Type" name="kind" value={form.kind} onChange={handleChange} error={errors.kind} help='Choose "Instructions" for step-by-step care instructions.'>

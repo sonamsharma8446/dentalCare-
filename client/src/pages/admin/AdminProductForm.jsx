@@ -172,10 +172,7 @@ export default function AdminProductForm() {
       )}
 
       <form onSubmit={handleSubmit} noValidate className="space-y-4 rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-        <p className="rounded-md bg-slate-50 p-3 text-sm text-slate-600">
-          Enter details exactly as printed on the product pack or given by the manufacturer. Do not guess or add claims
-          that are not on the label.
-        </p>
+        
 
         <FormField label="Product name *" name="name" value={form.name} onChange={handleChange} error={errors.name} />
 
