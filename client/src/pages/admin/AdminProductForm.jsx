@@ -185,14 +185,7 @@ export default function AdminProductForm() {
           </SelectField>
         </div>
 
-        <FormField
-          type="number"
-          min="0"
-          step="0.01"
-          inputMode="decimal"
-          onChange={handleChange}
-          className="sm:max-w-xs"
-        />
+       
 
         <TextAreaField label="Description" name="description" value={form.description} onChange={handleChange} error={errors.description} />
         <TextAreaField

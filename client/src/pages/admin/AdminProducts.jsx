@@ -75,7 +75,14 @@ export default function AdminProducts() {
         </Link>
       </div>
       <form onSubmit={applyFilters} className="grid gap-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-4 lg:items-end">
-        label="Search" name="search" type="search" placeholder="Name or brand" value={filters.search} onChange={handleFilterChange} />
+       <FormField
+  label="Search"
+  name="search"
+  type="search"
+  placeholder="Name or brand"
+  value={filters.search}
+  onChange={handleFilterChange}
+/> 
         <SelectField label="Category" name="category" value={filters.category} onChange={handleFilterChange}>
           <option value="">All categories</option>
           {categories.map((c) => (
