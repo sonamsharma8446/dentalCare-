@@ -4,7 +4,7 @@ import api from './axiosInstance';
 
 export const getCategories = () => api.get('/categories').then((res) => res.data.categories);
 
-// params: { search, category, minPrice, maxPrice, inStock, sort, page, limit }
+// params: { search, category, inStock, sort, page, limit }
 export const getProducts = (params, signal) =>
   api.get('/products', { params, signal }).then((res) => res.data);
 

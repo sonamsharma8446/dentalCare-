@@ -8,8 +8,6 @@ import FormField from '../common/FormField';
 export default function ProductFilters({ values, categories, onChange, onClear }) {
   const [draft, setDraft] = useState({
     search: values.search,
-    minPrice: values.minPrice,
-    maxPrice: values.maxPrice,
   });
 
   const handleDraft = (e) => setDraft({ ...draft, [e.target.name]: e.target.value });
@@ -23,7 +21,7 @@ export default function ProductFilters({ values, categories, onChange, onClear }
   };
 
   const hasFilters = Boolean(
-    values.search || values.category || values.minPrice || values.maxPrice || values.inStock
+    values.search || values.category ||  values.inStock
   );
 
   return (
@@ -48,8 +46,6 @@ export default function ProductFilters({ values, categories, onChange, onClear }
         </SelectField>
         <SelectField label="Sort by" name="sort" value={values.sort} onChange={(e) => apply({ sort: e.target.value })}>
           <option value="newest">Newest first</option>
-          <option value="price_asc">Price: low to high</option>
-          <option value="price_desc">Price: high to low</option>
           <option value="name_asc">Name: A to Z</option>
         </SelectField>
         

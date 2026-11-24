@@ -66,7 +66,7 @@ export const publicProductQuerySchema = z.object({
   search: z.string().trim().max(60).optional(),
   category: z.string().trim().max(80).optional(), // category slug
   inStock: z.enum(['true']).optional(),
-  sort: z.enum(['newest', 'price_asc', 'price_desc', 'name_asc']).default('newest'),
+  sort: z.enum(['newest', 'name_asc']).default('newest'),
 });
 
 export const adminProductQuerySchema = z.object({

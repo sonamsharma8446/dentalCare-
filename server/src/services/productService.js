@@ -42,11 +42,6 @@ export async function listPublicProducts({ page, limit, search, category,  inSto
   }
   if (search) filter.$or = searchFilter(search);
   if (inStock) filter.inStock = true;
-  if (minPrice !== undefined || maxPrice !== undefined) {
-    filter.price = {};
-    if (minPrice !== undefined) filter.price.$gte = minPrice;
-    if (maxPrice !== undefined) filter.price.$lte = maxPrice;
-  }
 
   const [products, total] = await Promise.all([
     Product.find(filter)

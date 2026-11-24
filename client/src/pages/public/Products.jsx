@@ -21,8 +21,6 @@ export default function Products() {
   const values = {
     search: searchParams.get('search') || '',
     category: searchParams.get('category') || '',
-    minPrice: searchParams.get('minPrice') || '',
-    maxPrice: searchParams.get('maxPrice') || '',
     inStock: searchParams.get('inStock') === 'true',
     sort: searchParams.get('sort') || 'newest',
   };

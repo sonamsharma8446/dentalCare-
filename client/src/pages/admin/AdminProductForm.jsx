@@ -186,16 +186,11 @@ export default function AdminProductForm() {
         </div>
 
         <FormField
-          label="Price (₹) *"
-          name="price"
           type="number"
           min="0"
           step="0.01"
           inputMode="decimal"
-          value={form.price}
           onChange={handleChange}
-          error={errors.price}
-
           className="sm:max-w-xs"
         />
 
