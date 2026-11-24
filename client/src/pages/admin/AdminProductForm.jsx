@@ -17,7 +17,6 @@ const emptyForm = {
   name: '',
   brand: '',
   category: '',
-  price: '',
   description: '',
   usageInstructions: '',
   precautionsText: '', // one precaution per line; turned into a list when saving
@@ -28,7 +27,6 @@ const formFromProduct = (p) => ({
   name: p.name,
   brand: p.brand || '',
   category: p.category?._id || '',
-  price: String(p.price),
   description: p.description || '',
   usageInstructions: p.usageInstructions || '',
   precautionsText: (p.precautions || []).join('\n'),
@@ -97,7 +95,6 @@ export default function AdminProductForm() {
       name: form.name,
       brand: form.brand,
       category: form.category,
-      price: form.price === '' ? undefined : Number(form.price),
       description: form.description,
       usageInstructions: form.usageInstructions,
       precautions: form.precautionsText.split('\n').map((p) => p.trim()).filter(Boolean),

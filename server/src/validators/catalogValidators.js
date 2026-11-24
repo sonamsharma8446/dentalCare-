@@ -28,13 +28,7 @@ export const categorySchema = z.object({
 
 // ---------- Products ----------
 
-const price = z
-  .number({
-    error: (issue) => (issue.input === undefined ? 'Price is required' : 'Price must be a number'),
-  })
-  .min(0, 'Price cannot be negative')
-  .max(10000000, 'Price is too large')
-  .refine((v) => Math.abs(v * 100 - Math.round(v * 100)) < 1e-6, 'Price can have at most 2 decimal places');
+
 
 const precautions = z
   .array(str('Precaution').trim().min(1, 'Precautions cannot be empty').max(300, 'Each precaution must be at most 300 characters'), {
@@ -50,7 +44,6 @@ export const createProductSchema = z.object({
     .min(2, 'Product name must be at least 2 characters')
     .max(120, 'Product name must be at most 120 characters'),
   category: objectId('Category'),
-  price,
   brand: optionalText('Brand', 80),
   description: optionalText('Description', 3000),
   usageInstructions: optionalText('Usage instructions', 3000),
@@ -72,8 +65,6 @@ export const publicProductQuerySchema = z.object({
   limit: z.coerce.number().int().min(1).max(48).default(12),
   search: z.string().trim().max(60).optional(),
   category: z.string().trim().max(80).optional(), // category slug
-  minPrice: z.coerce.number().min(0).optional(),
-  maxPrice: z.coerce.number().min(0).optional(),
   inStock: z.enum(['true']).optional(),
   sort: z.enum(['newest', 'price_asc', 'price_desc', 'name_asc']).default('newest'),
 });

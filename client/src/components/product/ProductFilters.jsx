@@ -52,10 +52,7 @@ export default function ProductFilters({ values, categories, onChange, onClear }
           <option value="price_desc">Price: high to low</option>
           <option value="name_asc">Name: A to Z</option>
         </SelectField>
-        <div className="grid grid-cols-2 gap-2">
-          <FormField label="Min price (₹)" name="minPrice" type="number" min="0" step="any" value={draft.minPrice} onChange={handleDraft} />
-          <FormField label="Max price (₹)" name="maxPrice" type="number" min="0" step="any" value={draft.maxPrice} onChange={handleDraft} />
-        </div>
+        
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3">

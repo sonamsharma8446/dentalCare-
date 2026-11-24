@@ -19,7 +19,7 @@ const productSchema = new mongoose.Schema(
     slug: { type: String, required: true, unique: true, lowercase: true },
     brand: { type: String, trim: true, maxlength: 80, default: '' },
     category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true, index: true },
-    price: { type: Number, required: [true, 'Price is required'], min: [0, 'Price cannot be negative'] }, // in rupees
+     // in rupees
     description: { type: String, trim: true, maxlength: 3000, default: '' },
     usageInstructions: { type: String, trim: true, maxlength: 3000, default: '' },
     precautions: { type: [String], default: [] },

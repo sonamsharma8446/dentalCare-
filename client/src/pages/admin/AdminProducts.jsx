@@ -7,7 +7,6 @@ import FormField from '../../components/common/FormField';
 import Pagination from '../../components/common/Pagination';
 import Alert from '../../components/common/Alert';
 import Loader from '../../components/common/Loader';
-import { formatPrice } from '../../utils/format';
 
 const PAGE_SIZE = 10;
 
@@ -75,9 +74,8 @@ export default function AdminProducts() {
           Add product
         </Link>
       </div>
-
       <form onSubmit={applyFilters} className="grid gap-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-4 lg:items-end">
-        <FormField label="Search" name="search" type="search" placeholder="Name or brand" value={filters.search} onChange={handleFilterChange} />
+        label="Search" name="search" type="search" placeholder="Name or brand" value={filters.search} onChange={handleFilterChange} />
         <SelectField label="Category" name="category" value={filters.category} onChange={handleFilterChange}>
           <option value="">All categories</option>
           {categories.map((c) => (
@@ -113,7 +111,6 @@ export default function AdminProducts() {
               <tr>
                 <th className="px-4 py-3 font-medium">Product</th>
                 <th className="hidden px-4 py-3 font-medium md:table-cell">Category</th>
-                <th className="px-4 py-3 font-medium">Price</th>
                 <th className="hidden px-4 py-3 font-medium sm:table-cell">Status</th>
                 <th className="px-4 py-3 text-right font-medium">Actions</th>
               </tr>
@@ -131,7 +128,6 @@ export default function AdminProducts() {
                     </div>
                   </td>
                   <td className="hidden px-4 py-3 text-slate-600 md:table-cell">{product.category?.name}</td>
-                  <td className="px-4 py-3 text-slate-700">{formatPrice(product.price)}</td>
                   <td className="hidden px-4 py-3 sm:table-cell">
                     <div className="flex flex-wrap gap-1">
                       <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${product.isActive ? 'bg-green-100 text-green-800' : 'bg-slate-200 text-slate-700'}`}>

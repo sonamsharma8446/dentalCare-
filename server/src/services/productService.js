@@ -13,8 +13,6 @@ export const LIST_FIELDS = '-usageInstructions -precautions ';
 
 const SORTS = {
   newest: { createdAt: -1, _id: -1 },
-  price_asc: { price: 1, _id: 1 },
-  price_desc: { price: -1, _id: -1 },
   name_asc: { name: 1, _id: 1 },
 };
 
@@ -34,7 +32,7 @@ async function assertCategoryExists(categoryId) {
 
 // ---------- Public ----------
 
-export async function listPublicProducts({ page, limit, search, category, minPrice, maxPrice, inStock, sort }) {
+export async function listPublicProducts({ page, limit, search, category,  inStock, sort }) {
   const filter = { isActive: true };
 
   if (category) {

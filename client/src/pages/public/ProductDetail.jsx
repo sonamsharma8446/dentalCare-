@@ -5,7 +5,7 @@ import ProductImage from '../../components/product/ProductImage';
 import ProductCard from '../../components/product/ProductCard';
 import WarningBox from '../../components/product/WarningBox';
 import Loader from '../../components/common/Loader';
-import { formatPrice, imageUrl } from '../../utils/format';
+import { imageUrl } from '../../utils/format';
 
 export default function ProductDetail() {
   const { slug } = useParams();
@@ -30,7 +30,7 @@ export default function ProductDetail() {
         // Related products are a bonus: if they fail to load the page still works
         getRelatedProducts(slug)
           .then((items) => !cancelled && setRelated(items))
-          .catch(() => {});
+          .catch(() => { });
       })
       .catch((err) => {
         if (cancelled) return;
@@ -100,9 +100,8 @@ export default function ProductDetail() {
                     onClick={() => setSelected(index)}
                     aria-label={`Show image ${index + 1}`}
                     aria-current={index === selected}
-                    className={`block h-16 w-16 overflow-hidden rounded-md border-2 ${
-                      index === selected ? 'border-teal-600' : 'border-transparent hover:border-slate-300'
-                    }`}
+                    className={`block h-16 w-16 overflow-hidden rounded-md border-2 ${index === selected ? 'border-teal-600' : 'border-transparent hover:border-slate-300'
+                      }`}
                   >
                     <img src={imageUrl(img.url, 150)} alt="" className="h-full w-full object-cover" />
                   </button>
@@ -117,12 +116,10 @@ export default function ProductDetail() {
           {product.brand && <p className="text-sm font-medium uppercase tracking-wide text-teal-700">{product.brand}</p>}
           <h1 className="mt-1 text-3xl font-bold text-slate-900">{product.name}</h1>
 
-          <div className="mt-4 flex items-center gap-3">
-            <span className="text-2xl font-bold text-slate-900">{formatPrice(product.price)}</span>
+          <div className="mt-4">
             <span
-              className={`rounded-full px-3 py-1 text-xs font-medium ${
-                product.inStock ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-600'
-              }`}
+              className={`rounded-full px-3 py-1 text-xs font-medium ${product.inStock ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-600'
+                }`}
             >
               {product.inStock ? 'In stock' : 'Out of stock'}
             </span>
